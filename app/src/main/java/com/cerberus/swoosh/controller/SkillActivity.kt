@@ -5,44 +5,43 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.cerberus.swoosh.utilities.EXTRA
 import com.cerberus.swoosh.R
-import com.cerberus.swoosh.utilities.SKILL
+import com.cerberus.swoosh.model.Player
+import com.cerberus.swoosh.utilities.PLAYER
 import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : AppCompatActivity() {
 
-    var league= ""
-    var skill = ""
+    lateinit var player: Player
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
 
-        league = intent.getStringExtra(EXTRA)
+        player = intent.getParcelableExtra(PLAYER)
 
     }
 
     fun onBeginnerClick(view: View)
     {
         ballerbtn.isChecked = false
-        skill = "Beginner"
+        player.skill = "Beginner"
     }
 
     fun onBallerClick(view: View)
     {
         beginnerbtn.isChecked = false
-        skill = "Baller"
+        player.skill = "Baller"
 
 
     }
 
     fun onFinishClick(view: View)
     {
-        if (skill != "")
+        if (player.skill != "")
         {
             val f = Intent(this,FinishActivity::class.java)
-            f.putExtra(EXTRA,league)
-            f.putExtra(SKILL,skill)
+            f.putExtra(PLAYER,player)
+
             startActivity(f)
         }
         else

@@ -3,8 +3,8 @@ package com.cerberus.swoosh.controller
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.cerberus.swoosh.R
-import com.cerberus.swoosh.utilities.EXTRA
-import com.cerberus.swoosh.utilities.SKILL
+import com.cerberus.swoosh.model.Player
+import com.cerberus.swoosh.utilities.PLAYER
 import kotlinx.android.synthetic.main.activity_finish.*
 
 class FinishActivity : AppCompatActivity() {
@@ -14,9 +14,9 @@ class FinishActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
 
-        val league = intent.getStringExtra(EXTRA)
-        val skill = intent.getStringExtra(SKILL)
+        val player = intent.getParcelableExtra<Player>(PLAYER)
 
-        searchtxt.text = "Looking for $league $skill league near you ..."
+
+        searchtxt.text = "Looking for ${player.league} ${player.skill} league near you ..."
     }
 }
